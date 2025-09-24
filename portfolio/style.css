@@ -1,0 +1,55 @@
+
+@font-face{
+    font-family: 'Oswald';
+    src: url('fonts/Oswald-Regular.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Mulish';
+    src: url('fonts/Mulish-Regular.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+* { 
+    box-sizing: border-box; 
+}
+html { 
+    scroll-behavior: smooth; 
+}
+body { 
+    margin: 0;
+    color: #ffffff;
+    background: #222222;
+}
+
+a { 
+    text-decoration: none; 
+    color: #ffffff;
+}
+.header__logo{
+    display: block;
+    padding: 20px;
+}
+.nav__link{
+    display: block;
+    padding: 18px 20.2px;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+}
+.header__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
