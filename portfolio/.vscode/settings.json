@@ -1,0 +1,16 @@
+{
+  "scss.validate": true,
+  "scss.lint.unknownAtRules": "ignore",
+  "css.validate": true,
+  "emmet.includeLanguages": {
+    "scss": "css"
+  },
+  "files.associations": {
+    "*.scss": "scss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "css.completion.completePropertyWithSemicolon": true,
+  "css.completion.triggerPropertyValueCompletion": true
+}
