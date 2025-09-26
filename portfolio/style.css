@@ -11,6 +11,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Mulish";
+  src: url("fonts/Mulish-MediumItalic.woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
   font-family: "Oswald";
   src: url("fonts/Oswald-Light.woff2");
   font-weight: 300;
@@ -269,7 +275,7 @@ a {
   display: block;
 }
 
-.about__title, .portfolio__title {
+.about__title, .portfolio__title, .pricing__title {
   font-family: "Oswald";
   font-weight: 400;
   font-size: 32px;
@@ -440,6 +446,149 @@ a {
 .portfolio__item:nth-child(12) .portfolio__image {
   width: 400px;
   height: 534px;
+}
+
+.pricing {
+  background-color: #ffffff;
+  min-height: 736px;
+  padding: 60px 0;
+}
+
+.pricing__container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px;
+  align-items: start;
+}
+
+.pricing__aside {
+  text-align: left;
+}
+
+.pricing__title {
+  color: #222222;
+}
+
+.pricing__desc {
+  font-family: "Mulish";
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  margin: 0;
+  color: #222222;
+}
+
+.pricing__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+.pricing__card {
+  border: 1px solid #222222;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-height: 500px;
+  padding: 24px;
+}
+
+.pricing__card-title {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.1px;
+  margin: 0 0 10px 0;
+  color: #222222;
+  text-transform: uppercase;
+}
+
+.pricing__list {
+  list-style: square;
+  padding: 0;
+  margin: 0 0 1px 2px;
+}
+
+.pricing__list li {
+  font-family: "Mulish";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  margin: 2px 0 4px 10px;
+  color: #222222;
+}
+
+.pricing__price {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #222222;
+  margin: 7px 0 12px 0;
+  flex-grow: 1;
+}
+
+.pricing__card-desc {
+  font-family: "Mulish";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #222222;
+  margin: 0 0px 12px -1px;
+}
+
+.pricing__button {
+  background-color: #222222;
+  color: #ffffff;
+  border: none;
+  padding: 17.5px 24px;
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .pricing__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .pricing__card {
+    min-height: 350px;
+    padding: 20px;
+  }
+}
+@media (max-width: 380px) {
+  .pricing__cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .pricing__card {
+    min-height: 300px;
+    padding: 16px;
+  }
+  .pricing__aside {
+    padding-left: 0;
+  }
+  .pricing__container {
+    padding: 0 10px;
+  }
+  .pricing__cards {
+    padding: 0 10px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
