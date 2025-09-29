@@ -42,7 +42,11 @@ body {
     color: #ffffff;
     background: #222222;
 }
-
+h1, .hidden{
+    visibility: hidden;
+    margin: 0;
+    height: 0;
+}
 a { 
     text-decoration: none; 
     color: #ffffff;
