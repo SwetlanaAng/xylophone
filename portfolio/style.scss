@@ -690,6 +690,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    max-width: none;
 }
 .footer__form-section{
     text-align: center;
