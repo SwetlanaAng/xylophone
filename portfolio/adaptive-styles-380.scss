@@ -1,7 +1,7 @@
 @media (max-width: 740px) {
     .hero__stats-title{
-        font-size: 56px;
-        line-height: 64px;
+        font-size: 3.5rem;
+        line-height: 4rem;
     }
     .hero__vertical {
         display: none;
@@ -57,8 +57,8 @@
 @media (max-width: 500px){
     .footer__form {
         flex-direction: column;
-        margin: 0px auto;
-        padding: 0px 10px 0px;
+        margin: 0 auto;
+        padding: 0 0.625rem 0;
     }
     .footer__input, .footer__button{
         width: 100%;
@@ -81,7 +81,7 @@
 }
 @media (max-width: 380px) {
     .hero__container {
-        padding-top: 51px;
+        padding-top: 3.1875rem;
     }
     .hero__vertical {
         display: none;
@@ -92,7 +92,7 @@
     }
     .hero__stats-subtitle{
         padding-bottom: 0;
-        margin-bottom: -19px;
+        margin-bottom: -1.1875rem;
     }
     
     .hero__stats-scroll {
@@ -110,14 +110,14 @@
     
     .hero__intro {
         order: 2;
-        margin-left: 118px;
+        margin-left: 7.375rem;
     }
     .hero__intro-text{
-        padding: 9px 0 44px 0
+        padding: 0.5625rem 0 2.75rem 0
     }
 
     .about__image {
-        height: 340px;
+        height: 21.25rem;
     }
     .portfolio__desc{
         width: auto;
@@ -127,11 +127,11 @@
     }
 
     .pricing__aside {
-        padding-left: 10px;
+        padding-left: 0.625rem;
     }
     .pricing__cards {
-        padding-top: 3px;
-        gap: 20px
+        padding-top: 0.1875rem;
+        gap: 1.25rem
     }
     .pricing__card{
         padding: 1.5rem;

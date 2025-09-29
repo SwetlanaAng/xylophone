@@ -72,6 +72,7 @@ a {
     display: none;
 }
 
+
 .container {
     max-width: 90rem;
     margin: 0 auto;
@@ -182,14 +183,80 @@ a {
     position: absolute;
     bottom: 3.9375rem;
 }
+@media (hover: hover) and (pointer: fine) {
+    .hero__stats-scroll {
+        transition: color 0.3s ease;
+    }
+    .hero__stats-scroll:hover {
+        color: #FF3C3C;
+    }
+    .hero__stats-scroll:hover .hero__stats-scroll-arrow--white {
+        opacity: 0;
+    }
+    .hero__stats-scroll:hover .hero__stats-scroll-arrow--red {
+        opacity: 1;
+    }
+    
+    .pricing__card {
+        transition: border-color 0.3s ease;
+    }
+    .pricing__card:hover {
+        border-color: #FF3C3C;
+    }
+    .pricing__card:hover .pricing__button {
+        background-color: #FF3C3C;
+        color: #222222;
+    }
+    .pricing__button {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .faq__header:hover .faq__question {
+        color: #FF3C3C;
+        transition: color 0.5s ease;
+    }
+    
+    .faq__header:hover .faq__icon {
+        color: #FF3C3C;
+        transition: color 0.5s ease;
+    }
+    .footer__button {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .footer__button:hover {
+        background-color: #FF3C3C;
+        color: #222222;
+    }
+    
+    .footer__input {
+        transition: border-color 0.3s ease;
+    }
+    .footer__input:hover {
+        border-color: #FF3C3C;
+    }
+    .footer__input:focus {
+        border-color: #FF3C3C;
+        outline: none;
+    }
+    .nav__item:hover .nav__link {
+        color: #FF3C3C;
+        transition: color 0.5s ease;
+    }
+}
 .hero__stats-scroll-arrow{
     position: absolute;
     top: -0.0625rem;
     right: -2rem;
+    transition: opacity 0.3s ease;
+}
+.hero__stats-scroll-arrow--white {
+    opacity: 1;
+}
+.hero__stats-scroll-arrow--red {
+    opacity: 0;
 }
 .hero__photo{
     padding-bottom: 0.1875rem;
-    width: 220px;
+    width: 13.75rem;
 }
 .hero__photo-image{
     width: 13.75rem;
@@ -200,7 +267,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 17.25rem;
-    max-width: 280px;
+    max-width: 17.5rem;
 }
 .hero__intro-photo{
     padding-top: 0.5625rem;
@@ -300,6 +367,7 @@ a {
     overflow: hidden;
     width: 100%;
     height: 40.875rem;
+    cursor: pointer;
 }
 .portfolio__track{
     display: flex;
@@ -448,7 +516,7 @@ a {
     text-align: left;
     height: 31.25rem;
     padding: 1.5rem;
-    width: 320px;
+    width: 20rem;
 }
 .pricing__card-title{
     font-family: 'Oswald';
@@ -589,6 +657,8 @@ a {
 .faq__icon--minus{
     display: none;
 }
+
+
 .faq__item--active .faq__icon--plus{
     display: none;
 }
@@ -639,7 +709,7 @@ a {
 .footer__input{
     flex: 1;
     padding: 1.125rem 0.75rem 1.0625rem;
-    border: 0.0625rem solid #222222;
+    border: 0.125rem solid #222222;
     font-family: 'Oswald';
     font-weight: 400;
     font-size: 1rem;
