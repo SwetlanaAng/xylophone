@@ -35,6 +35,49 @@
     .hero__intro-description {
         margin-left: 0;
     }
+
+    .pricing__cards{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .pricing__card{
+        min-height: 18.75rem;
+        padding: 1rem;
+    }
+    .pricing__aside{
+        padding-left: 0;
+    }
+    .pricing__container{
+        padding: 0 0.625rem;
+    }
+    .pricing__cards{
+        padding: 0 0.625rem;
+    }
+}
+@media (max-width: 500px){
+    .footer__form {
+        flex-direction: column;
+        margin: 0px auto;
+        padding: 0px 10px 0px;
+    }
+    .footer__input, .footer__button{
+        width: 100%;
+    }
+    .footer__contacts{
+        gap: 1rem;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .footer__contact{
+        font-size: 0.75rem;
+        
+        text-align: center;
+    }
+    .footer__contact::before{
+        margin-right: 0;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
 }
 @media (max-width: 380px) {
     .hero__container {
@@ -83,4 +126,33 @@
         left: 44.5%;
     }
 
+    .pricing__aside {
+        padding-left: 10px;
+    }
+    .pricing__cards {
+        padding-top: 3px;
+        gap: 20px
+    }
+    .pricing__card{
+        padding: 1.5rem;
+    }
+
+    .footer{
+        padding: 2.5rem 0 1.875rem 0;
+    }
+    .footer__form-section {
+        padding: 0 0.625rem;
+    }
+    .footer__title{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        padding: 0 0 1.25rem 0;
+    }
+    .footer__form{
+        max-width: 100%;
+        gap: 0.4rem;
+    }
+    .footer__contacts {
+        gap: 0rem;
+    }
 }

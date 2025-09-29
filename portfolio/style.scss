@@ -446,8 +446,9 @@ a {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    min-height: 31.25rem;
+    height: 31.25rem;
     padding: 1.5rem;
+    width: 320px;
 }
 .pricing__card-title{
     font-family: 'Oswald';

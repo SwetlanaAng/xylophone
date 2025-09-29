@@ -1,3 +1,20 @@
+@media (max-width: 1439px) {
+    .pricing__cards{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        justify-items: center;
+        padding: 0 2.625rem;
+    }
+    .pricing__card{
+        min-height: 21.875rem;
+    }
+    .pricing__aside{
+        padding-left: 11px;
+    }
+    .pricing__container{
+        padding: 0 0.625rem;
+    }
+}
 @media (max-width: 1400px) {
     .hero__stats-title{
         font-size: 68px;
@@ -19,6 +36,9 @@
     .hero__intro-photo-image{
         width: 100%;
         max-width: 17.5rem;
+    }
+    .footer__form{
+        padding: 0 20px 0;
     }
 }
 
@@ -142,5 +162,26 @@
     }
     .portfolio__track{
         left: 47.5%;
+    }
+    .faq {
+        padding: 3.75rem 0 3.5rem;
+    }
+    .faq__container{
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    } 
+    .faq__header{
+        padding: 15.89px 0;
+    }
+    .footer__form-section {
+        text-align: center;
+        padding-bottom: 2px;
+    }
+    .footer__form{
+        margin: -3px auto;
+        padding: 0px 20px 0px;
+    }
+    .footer__title {
+        padding: 4px 0 1.25rem 0;
     }
 }

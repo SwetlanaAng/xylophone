@@ -494,8 +494,9 @@ a {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  min-height: 31.25rem;
+  height: 31.25rem;
   padding: 1.5rem;
+  width: 320px;
 }
 
 .pricing__card-title {
@@ -770,6 +771,23 @@ align-items: center; */
   text-transform: uppercase;
 }
 
+@media (max-width: 1439px) {
+  .pricing__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    justify-items: center;
+    padding: 0 2.625rem;
+  }
+  .pricing__card {
+    min-height: 21.875rem;
+  }
+  .pricing__aside {
+    padding-left: 11px;
+  }
+  .pricing__container {
+    padding: 0 0.625rem;
+  }
+}
 @media (max-width: 1400px) {
   .hero__stats-title {
     font-size: 68px;
@@ -791,6 +809,9 @@ align-items: center; */
   .hero__intro-photo-image {
     width: 100%;
     max-width: 17.5rem;
+  }
+  .footer__form {
+    padding: 0 20px 0;
   }
 }
 @media (max-width: 900px) {
@@ -911,6 +932,27 @@ align-items: center; */
   .portfolio__track {
     left: 47.5%;
   }
+  .faq {
+    padding: 3.75rem 0 3.5rem;
+  }
+  .faq__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .faq__header {
+    padding: 15.89px 0;
+  }
+  .footer__form-section {
+    text-align: center;
+    padding-bottom: 2px;
+  }
+  .footer__form {
+    margin: -3px auto;
+    padding: 0px 20px 0px;
+  }
+  .footer__title {
+    padding: 4px 0 1.25rem 0;
+  }
 }
 @media (max-width: 740px) {
   .hero__stats-title {
@@ -943,6 +985,47 @@ align-items: center; */
   }
   .hero__intro-description {
     margin-left: 0;
+  }
+  .pricing__cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .pricing__card {
+    min-height: 18.75rem;
+    padding: 1rem;
+  }
+  .pricing__aside {
+    padding-left: 0;
+  }
+  .pricing__container {
+    padding: 0 0.625rem;
+  }
+  .pricing__cards {
+    padding: 0 0.625rem;
+  }
+}
+@media (max-width: 500px) {
+  .footer__form {
+    flex-direction: column;
+    margin: 0px auto;
+    padding: 0px 10px 0px;
+  }
+  .footer__input, .footer__button {
+    width: 100%;
+  }
+  .footer__contacts {
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .footer__contact {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  .footer__contact::before {
+    margin-right: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
   }
 }
 @media (max-width: 380px) {
@@ -984,6 +1067,34 @@ align-items: center; */
   }
   .portfolio__track {
     left: 44.5%;
+  }
+  .pricing__aside {
+    padding-left: 10px;
+  }
+  .pricing__cards {
+    padding-top: 3px;
+    gap: 20px;
+  }
+  .pricing__card {
+    padding: 1.5rem;
+  }
+  .footer {
+    padding: 2.5rem 0 1.875rem 0;
+  }
+  .footer__form-section {
+    padding: 0 0.625rem;
+  }
+  .footer__title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    padding: 0 0 1.25rem 0;
+  }
+  .footer__form {
+    max-width: 100%;
+    gap: 0.4rem;
+  }
+  .footer__contacts {
+    gap: 0rem;
   }
 }
 
