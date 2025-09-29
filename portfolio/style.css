@@ -579,7 +579,7 @@ a {
 .pricing__list {
   list-style: square;
   padding: 0;
-  margin: 0 0 0.0625rem 0.125rem;
+  margin: -2px 0 0.0625rem 0.5rem;
 }
 
 .pricing__list li {
@@ -588,7 +588,7 @@ a {
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: 0;
-  margin: 0.125rem 0 0.25rem 0.625rem;
+  margin: 0.125rem 0 0.25rem 0.3rem;
   color: #222222;
 }
 
@@ -777,7 +777,7 @@ a {
 
 .footer__input {
   flex: 1;
-  padding: 1.125rem 0.75rem 1.0625rem;
+  padding: 0.9rem 0.6rem 1.0625rem;
   border: 0.125rem solid #222222;
   font-family: "Oswald";
   font-weight: 400;
@@ -820,9 +820,7 @@ a {
   align-items: center;
 }
 
-.footer__contact { /* 
-display: flex;
-align-items: center; */
+.footer__contact {
   text-decoration: none;
   padding: 1.125rem 1.25rem;
 }
@@ -937,7 +935,7 @@ align-items: center; */
   }
   .hero__vertical {
     justify-content: left;
-    top: 19.5rem;
+    top: 19.7rem;
     gap: 0.75rem;
   }
   .hero__vertical-line {
@@ -961,7 +959,7 @@ align-items: center; */
     white-space: nowrap;
   }
   .hero__stats-title {
-    margin: 2.5rem 0 -0.4375rem;
+    margin: 2.7rem 0 -0.4375rem;
   }
   .hero__photo {
     display: none;
@@ -981,7 +979,7 @@ align-items: center; */
     overflow: hidden;
   }
   .hero__intro-photo {
-    padding-bottom: 13.625rem;
+    padding-bottom: 13.6rem;
     padding-left: 3.6875rem;
     width: 100%;
   }
@@ -1123,7 +1121,7 @@ align-items: center; */
     margin-left: 7.375rem;
   }
   .hero__intro-text {
-    padding: 0.5625rem 0 2.75rem 0;
+    padding: 0.4rem 0 2.75rem 0;
   }
   .about__image {
     height: 21.25rem;
@@ -1144,6 +1142,12 @@ align-items: center; */
   .pricing__card {
     padding: 1.5rem;
   }
+  .faq__header {
+    padding: 0.98rem 0;
+  }
+  .faq {
+    padding: 3.75rem 0 3.6rem;
+  }
   .footer {
     padding: 2.5rem 0 1.875rem 0;
   }
@@ -1157,7 +1161,7 @@ align-items: center; */
   }
   .footer__form {
     max-width: 100%;
-    gap: 0.4rem;
+    gap: 7px;
   }
   .footer__contacts {
     gap: 0rem;

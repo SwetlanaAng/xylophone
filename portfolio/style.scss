@@ -531,7 +531,7 @@ a {
 .pricing__list{
     list-style: square;
     padding: 0;
-    margin: 0 0 0.0625rem 0.125rem;
+    margin: -2px 0 0.0625rem 0.5rem;
     
 }
 .pricing__list li{
@@ -540,7 +540,7 @@ a {
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: 0;
-    margin: 0.125rem 0 0.25rem 0.625rem;
+    margin: 0.125rem 0 0.25rem 0.3rem;
     color: #222222;
 }
 .pricing__price{
@@ -708,7 +708,7 @@ a {
 }
 .footer__input{
     flex: 1;
-    padding: 1.125rem 0.75rem 1.0625rem;
+    padding: 0.9rem 0.6rem 1.0625rem;
     border: 0.125rem solid #222222;
     font-family: 'Oswald';
     font-weight: 400;
@@ -747,9 +747,7 @@ a {
     justify-content: center;
     align-items: center;
 }
-.footer__contact{/* 
-    display: flex;
-    align-items: center; */
+.footer__contact{
     text-decoration: none;
     padding: 1.125rem 1.25rem;
 }

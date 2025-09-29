@@ -113,7 +113,7 @@
         margin-left: 7.375rem;
     }
     .hero__intro-text{
-        padding: 0.5625rem 0 2.75rem 0
+        padding: 0.4rem 0 2.75rem 0
     }
 
     .about__image {
@@ -136,7 +136,12 @@
     .pricing__card{
         padding: 1.5rem;
     }
-
+    .faq__header{
+        padding: 0.98rem 0;
+    }
+    .faq {
+        padding: 3.75rem 0 3.6rem;
+    }
     .footer{
         padding: 2.5rem 0 1.875rem 0;
     }
@@ -150,7 +155,7 @@
     }
     .footer__form{
         max-width: 100%;
-        gap: 0.4rem;
+        gap: 7px
     }
     .footer__contacts {
         gap: 0rem;
