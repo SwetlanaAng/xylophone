@@ -1,0 +1,163 @@
+@media (max-width: 740px) {
+    .hero__stats-title{
+        font-size: 3.5rem;
+        line-height: 4rem;
+    }
+    .hero__vertical {
+        display: none;
+    }
+    
+    .hero__photo {
+        display: none;
+    }
+    
+    .hero__stats-scroll {
+        display: none;
+    }
+    
+    .hero__horizontal {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero__stats {
+        order: 1;
+        padding-left: 0;
+        max-width: none;
+    }
+    
+    .hero__intro {
+        order: 2;
+    }
+    .hero__intro-photo {
+        padding: 0;
+    }
+    .hero__intro-description {
+        margin-left: 0;
+    }
+
+    .pricing__cards{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .pricing__card{
+        min-height: 18.75rem;
+        padding: 1rem;
+    }
+    .pricing__aside{
+        padding-left: 0;
+    }
+    .pricing__container{
+        padding: 0 0.625rem;
+    }
+    .pricing__cards{
+        padding: 0 0.625rem;
+    }
+}
+@media (max-width: 500px){
+    .footer__form {
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 0 0.625rem 0;
+    }
+    .footer__input, .footer__button{
+        width: 100%;
+    }
+    .footer__contacts{
+        gap: 1rem;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .footer__contact{
+        font-size: 0.75rem;
+        
+        text-align: center;
+    }
+    .footer__contact::before{
+        margin-right: 0;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
+}
+@media (max-width: 380px) {
+    .hero__container {
+        padding-top: 3.1875rem;
+    }
+    .hero__vertical {
+        display: none;
+    }
+    
+    .hero__photo {
+        display: none;
+    }
+    .hero__stats-subtitle{
+        padding-bottom: 0;
+        margin-bottom: -1.1875rem;
+    }
+    
+    .hero__stats-scroll {
+        display: none;
+    }
+    
+    .hero__horizontal {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero__stats {
+        order: 1;
+    }
+    
+    .hero__intro {
+        order: 2;
+        margin-left: 7.375rem;
+    }
+    .hero__intro-text{
+        padding: 0.4rem 0 2.75rem 0
+    }
+
+    .about__image {
+        height: 21.25rem;
+    }
+    .portfolio__desc{
+        width: auto;
+    }
+    .portfolio__track{
+        left: 44.5%;
+    }
+
+    .pricing__aside {
+        padding-left: 0.625rem;
+    }
+    .pricing__cards {
+        padding-top: 0.1875rem;
+        gap: 1.25rem
+    }
+    .pricing__card{
+        padding: 1.5rem;
+    }
+    .faq__header{
+        padding: 0.98rem 0;
+    }
+    .faq {
+        padding: 3.75rem 0 3.6rem;
+    }
+    .footer{
+        padding: 2.5rem 0 1.875rem 0;
+    }
+    .footer__form-section {
+        padding: 0 0.625rem;
+    }
+    .footer__title{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        padding: 0 0 1.25rem 0;
+    }
+    .footer__form{
+        max-width: 100%;
+        gap: 7px
+    }
+    .footer__contacts {
+        gap: 0rem;
+    }
+}
