@@ -1144,6 +1144,9 @@ a {
   .about__image {
     height: 21.25rem;
   }
+  .portfolio {
+    min-height: 58.6rem;
+  }
   .portfolio__desc {
     width: auto;
   }
