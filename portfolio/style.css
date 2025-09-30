@@ -1,3 +1,4 @@
+/* @import 'adaptive-styles'; */
 @font-face {
   font-family: "Oswald";
   src: url("fonts/Oswald-Regular.woff2");
@@ -373,21 +374,25 @@ a {
 
 .portfolio {
   min-height: 57.125rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio__container {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  padding: 3.75rem 0;
-  align-items: start;
-  max-width: none;
+  padding: 3.75rem 0 2.6rem;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .portfolio__aside {
   text-align: left;
   max-width: 22.5rem;
   padding-left: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .portfolio__desc {
@@ -404,9 +409,10 @@ a {
 .portfolio__viewport {
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
   height: 40.875rem;
   cursor: pointer;
+  margin-left: calc(-50vw + 50%);
 }
 
 .portfolio__track {
@@ -841,6 +847,12 @@ a {
   text-transform: uppercase;
 }
 
+@media (min-width: 1440px) {
+  .portfolio__container {
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+}
 @media (max-width: 1439px) {
   .pricing__cards {
     grid-template-columns: repeat(2, 1fr);
