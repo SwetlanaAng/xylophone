@@ -474,7 +474,6 @@ a {
   overflow: hidden;
   width: 100vw;
   height: 40.875rem;
-  cursor: pointer;
   margin-left: calc(-50vw + 50%);
 }
 
@@ -806,6 +805,11 @@ a {
 .faq__content {
   max-height: 0;
   overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq__content--active {
+  max-height: none;
 }
 
 .faq__item--active .faq__content {

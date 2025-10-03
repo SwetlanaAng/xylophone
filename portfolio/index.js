@@ -15,6 +15,14 @@ function onDOMContentLoaded() {
     const buttonScroll = document.querySelector(".hero__stats-scroll");
     const portfolioSlider = document.querySelector(".portfolio__viewport");
     const portfolioTrack = document.querySelector(".portfolio__track");
+    const faqHeaders = document.querySelectorAll(".faq__header");
+    const faqId = sessionStorage.getItem("faq-id")? sessionStorage.getItem("faq-id") : 'faq-1';
+
+        const faqDefailtItem = document.querySelector(`#${faqId}`);
+       
+         faqDefailtItem.parentElement.classList.add("faq__item--active"); console.log(faqDefailtItem);
+         faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
+    
 
     function openCloseMenu(){
         htmlElement.classList.toggle("no-scroll");
@@ -218,4 +226,24 @@ function onDOMContentLoaded() {
             burger.classList.remove('header__burger--active');
         }
     });
+    function faqHandler(event) {
+        const question = event.currentTarget;
+        sessionStorage.setItem("faq-id", question.id);
+        const answer = question.nextElementSibling;
+        const parent = question.parentElement;
+
+        const otherItems = parent.parentElement.querySelectorAll(".faq__item");
+        otherItems.forEach(item => {
+            item.classList.remove("faq__item--active");
+            item.querySelector(".faq__content").classList.remove("faq__content--active");
+        });
+        parent.classList.add("faq__item--active");
+        answer.classList.add("faq__content--active");
+    }
+    if (faqHeaders) {
+        faqHeaders.forEach(header => {
+            header.addEventListener("click", faqHandler);
+        });
+    }
+
 }
