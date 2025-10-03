@@ -33,12 +33,12 @@
 }
 html { 
     scroll-behavior: smooth; 
+    overflow-x: hidden;
 }
 body { 
     margin: 0;
     color: #FFFFFF;
     background: #222222;
-    overflow-x: hidden;
 }
 .no-scroll{
     overflow: hidden;
@@ -82,14 +82,14 @@ a {
 
 .nav__small_screens{
     height: 100vh;
-    position: absolute;
+    position: fixed;
     right: 0;
     background-color: #222222;
     display: flex;
     width: 100vw;
     justify-content: space-between;
     align-items: center;
-    transform: translateX(100%);
+    transform: translateX(100vw);
     transition: transform 0.6s ease-in-out;
     z-index: 10;
     overflow: hidden;
@@ -237,6 +237,10 @@ a {
     text-align: right;
     position: absolute;
     bottom: 3.9375rem;
+    background-color: #222222;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
 }
 @media (hover: hover) and (pointer: fine) {
     .hero__stats-scroll {
@@ -437,11 +441,13 @@ a {
 .portfolio__track{
     display: flex;
     position: absolute;
-    left: 48.5%;
+    left: 50%;
     top: 0;
     transform: translateX(-50%);
     gap: 1.25rem;
     margin: 0 1.25rem 0;
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 .portfolio__item{
     overflow: hidden;
