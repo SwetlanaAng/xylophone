@@ -847,7 +847,7 @@ a {
   padding: 0 0 1.25rem 0;
 }
 
-.footer__form {
+.footer__form, .modal__form {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
@@ -856,7 +856,7 @@ a {
   margin: 0 auto;
 }
 
-.footer__input {
+.footer__input, .modal__input {
   flex: 1;
   padding: 0.9rem 0.6rem 1.0625rem;
   border: 0.125rem solid #222222;
@@ -868,16 +868,16 @@ a {
   background-color: #ffffff;
 }
 
-.footer__input::placeholder {
+.footer__input::placeholder, .modal__input::placeholder {
   color: #989898;
   text-transform: uppercase;
 }
 
-.footer__input[type=tel]::placeholder {
+.footer__input[type=tel]::placeholder, .modal__input[type=tel]::placeholder {
   color: #222222;
 }
 
-.footer__button {
+.footer__button, .modal__button {
   background-color: #222222;
   color: #ffffff;
   border: none;
@@ -914,6 +914,86 @@ a {
   letter-spacing: 0;
   color: #ffffff;
   text-transform: uppercase;
+}
+
+.modal-bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.6);
+  position: absolute;
+  z-index: 5;
+  left: -9990px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.modal-bg--active {
+  left: 0;
+}
+
+.modal__content {
+  width: 500px;
+  height: 356px;
+  background: #ffffff;
+  padding: 60px;
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal__content .modal__form {
+  flex-direction: column;
+  margin: 0 auto;
+}
+.modal__content .modal__form .modal__input, .modal__content .modal__form .modal__button {
+  width: 100%;
+}
+
+.modal__title {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+  margin: 0 0 0.75rem 0;
+  color: #222222;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.modal__text {
+  font-family: "Mulish";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0;
+  margin: 0;
+  color: #222222;
+}
+
+.modal__cross:before,
+.modal__cross:after {
+  content: "";
+  position: absolute;
+  top: 29px;
+  right: 21px;
+  width: 18px;
+  height: 2px;
+  background: #000000;
+}
+
+.modal__cross:before {
+  transform: rotate(45deg);
+}
+
+.modal__cross:after {
+  transform: rotate(-45deg);
+}
+
+.modal__cross:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 1440px) {
@@ -1176,6 +1256,11 @@ a {
   }
   .pricing__cards {
     padding: 0 0.625rem;
+  }
+  .modal__content {
+    width: 340px;
+    height: 383px;
+    padding: 60px 20px;
   }
 }
 @media (max-width: 500px) {

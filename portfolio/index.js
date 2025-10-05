@@ -17,11 +17,33 @@ function onDOMContentLoaded() {
     const portfolioTrack = document.querySelector(".portfolio__track");
     const faqHeaders = document.querySelectorAll(".faq__header");
     const faqId = sessionStorage.getItem("faq-id")? sessionStorage.getItem("faq-id") : 'faq-1';
+    const faqDefailtItem = document.querySelector(`#${faqId}`);
+    const modalCross = document.querySelector(".modal__cross");
+    const modalBg = document.querySelector(".modal-bg");
+    const pricingButtons = document.querySelectorAll(".pricing__button");
 
-        const faqDefailtItem = document.querySelector(`#${faqId}`);
-       
-         faqDefailtItem.parentElement.classList.add("faq__item--active"); console.log(faqDefailtItem);
-         faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
+    function closeModal() {
+        modalBg.classList.remove("modal-bg--active");
+        htmlElement.classList.remove("no-scroll");
+    }
+    pricingButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            htmlElement.classList.add("no-scroll");
+            const modalTop = htmlElement.scrollTop;
+            modalBg.style.top = `${modalTop}px`;
+            modalBg.classList.add("modal-bg--active");
+            
+        });
+    });
+    modalCross.addEventListener("click", closeModal);
+    modalBg.addEventListener("click", (e) => {
+        if (e.target === modalBg) {
+            closeModal();
+        }
+    });
+            
+    faqDefailtItem.parentElement.classList.add("faq__item--active");
+    faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
     
 
     function openCloseMenu(){
@@ -218,6 +240,7 @@ function onDOMContentLoaded() {
         });
     }
     window.addEventListener("resize", () => {
+        closeModal();
         mode = isTouchDevice() ? 'touch' : 'mouse';
         setTimeout(initSlider, 100);
         if (window.innerWidth > 768) {
