@@ -140,14 +140,17 @@ function onDOMContentLoaded() {
                 const sliderWidth = rect.width;
                 const activeZone = sliderWidth * 0.3;
                 
-                if (mouseX < activeZone) {
+                if(mouseX > activeZone && mouseX < sliderWidth - activeZone){
+                    portfolioSlider.style.cursor = 'auto';
+                    stopSliderAnimation();
+                }
+                else if (mouseX < activeZone) {
+                    portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
                     startSliderAnimation(1);
                 }
                 else if (mouseX > sliderWidth - activeZone) {
+                    portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
                     startSliderAnimation(-1);
-                }
-                else {
-                    stopSliderAnimation();
                 }
             }
         });
