@@ -86,8 +86,8 @@ function onDOMContentLoaded() {
         const trackWidth = portfolioTrack.scrollWidth;
         const viewportWidth = portfolioSlider.offsetWidth;
         const margin = 20;
-        const maxTranslateLeft = -((trackWidth-viewportWidth)/2  + margin);
-        const maxTranslateRight = (trackWidth-viewportWidth)/2  + margin;
+        const maxTranslateLeft = -((trackWidth-viewportWidth) / 2  + margin);
+        const maxTranslateRight = (trackWidth-viewportWidth) / 2  + margin;
         
         return { 
             minTranslate: maxTranslateLeft,
@@ -134,88 +134,88 @@ function onDOMContentLoaded() {
         }
     }
     
-        portfolioSlider.addEventListener('mousemove', function(event) {
-            if (mode === 'mouse') {
-                const rect = portfolioSlider.getBoundingClientRect();
-                const mouseX = event.clientX - rect.left;
-                const sliderWidth = rect.width;
-                const activeZone = sliderWidth * 0.3;
-                
-                if (mouseX < activeZone) {
-                    portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
-                    startSliderAnimation(1);
-                }
-                else if (mouseX > sliderWidth - activeZone) {
-                    portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
-                    startSliderAnimation(-1);
-                } else {
-                    portfolioSlider.style.cursor = 'auto';
-                    stopSliderAnimation();
-                }
-            }
-        });
-
-        portfolioSlider.addEventListener('mouseleave', function() {
-            stopSliderAnimation();
-        });
-
-    
-        let startX = 0;
-        let startY = 0;
-        let isDragging = false;
-        let startTranslateX = 0;
-        let swipeDirection = null;
-        
-        portfolioSlider.addEventListener('touchstart', function(event) {
-            startX = event.touches[0].clientX;
-            startY = event.touches[0].clientY;
-            startTranslateX = currentTranslateX;
-            isDragging = true;
-            swipeDirection = null;
-            portfolioTrack.style.transition = 'none';
-        }, { passive: false });
-        
-        portfolioSlider.addEventListener('touchmove', function(event) {
-            if (mode === 'touch') {
-                if (!isDragging) return;
+    portfolioSlider.addEventListener('mousemove', function(event) {
+        if (mode === 'mouse') {
+            const rect = portfolioSlider.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const sliderWidth = rect.width;
+            const activeZone = sliderWidth * 0.3;
             
-                const currentX = event.touches[0].clientX;
-                const currentY = event.touches[0].clientY;
-                const offsetX = currentX - startX;
-                const offsetY = currentY - startY;
-                
-                if (swipeDirection === null) {
-                    if (Math.abs(offsetX) > 10 || Math.abs(offsetY) > 10) {
-                        swipeDirection = Math.abs(offsetX) > Math.abs(offsetY) ? 'horizontal' : 'vertical';
-                    }
-                }
-                
-                if (swipeDirection === 'horizontal') {
-                    if (event.cancelable) {
-                        event.preventDefault();
-                    }
-                    
-                    const bounds = getSliderBounds();
-                    let newTranslateX = startTranslateX + offsetX;
-                    
-                    if (newTranslateX < bounds.minTranslate) {
-                        newTranslateX = bounds.minTranslate;
-                    }
-                    if (newTranslateX > bounds.maxTranslate) {
-                        newTranslateX = bounds.maxTranslate;
-                    }
-                    
-                    currentTranslateX = newTranslateX;
-                    portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
+            if (mouseX < activeZone) {
+                portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
+                startSliderAnimation(1);
+            }
+            else if (mouseX > sliderWidth - activeZone) {
+                portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
+                startSliderAnimation(-1);
+            } else {
+                portfolioSlider.style.cursor = 'auto';
+                stopSliderAnimation();
+            }
+        }
+    });
+
+    portfolioSlider.addEventListener('mouseleave', function() {
+        stopSliderAnimation();
+    });
+
+
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let startTranslateX = 0;
+    let swipeDirection = null;
+    
+    portfolioSlider.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+        startTranslateX = currentTranslateX;
+        isDragging = true;
+        swipeDirection = null;
+        portfolioTrack.style.transition = 'none';
+    }, { passive: false });
+        
+    portfolioSlider.addEventListener('touchmove', function(event) {
+        if (mode === 'touch') {
+            if (!isDragging) return;
+        
+            const currentX = event.touches[0].clientX;
+            const currentY = event.touches[0].clientY;
+            const offsetX = currentX - startX;
+            const offsetY = currentY - startY;
+            
+            if (swipeDirection === null) {
+                if (Math.abs(offsetX) > 10 || Math.abs(offsetY) > 10) {
+                    swipeDirection = Math.abs(offsetX) > Math.abs(offsetY) ? 'horizontal' : 'vertical';
                 }
             }
-        }, { passive: false });
+            
+            if (swipeDirection === 'horizontal') {
+                if (event.cancelable) {
+                    event.preventDefault();
+                }
+                
+                const bounds = getSliderBounds();
+                let newTranslateX = startTranslateX + offsetX;
+                
+                if (newTranslateX < bounds.minTranslate) {
+                    newTranslateX = bounds.minTranslate;
+                }
+                if (newTranslateX > bounds.maxTranslate) {
+                    newTranslateX = bounds.maxTranslate;
+                }
+                
+                currentTranslateX = newTranslateX;
+                portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
+            }
+        }
+    }, { passive: false });
         
-        portfolioSlider.addEventListener('touchend', function() {
-            isDragging = false;
-            swipeDirection = null;
-            portfolioTrack.style.transition = 'transform 0.3s ease';
-        });
+    portfolioSlider.addEventListener('touchend', function() {
+        isDragging = false;
+        swipeDirection = null;
+        portfolioTrack.style.transition = 'transform 0.3s ease';
+    });
     
     if (portfolioTrack && portfolioSlider) {
         initSlider();
