@@ -1,11 +1,36 @@
+let currentTranslateX = 0;
+let sliderInterval = null;
+let isSliderInitialized = false;
 
-document.addEventListener("DOMContentLoaded", onDOMContentLoaded) 
+
+document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
 const mediaQueryList = window.matchMedia("(hover: hover) and (pointer: fine)");
-    
-function handleModeChange() { onDOMContentLoaded();}
-mediaQueryList.addListener(handleModeChange);
+let mode = mediaQueryList.matches ? 'mouse' : 'touch'; 
 
-handleModeChange();
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
+function getSliderBounds() {
+    const portfolioTrack = document.querySelector(".portfolio__track");
+    const portfolioSlider = document.querySelector(".portfolio__viewport");
+    
+    if (!portfolioTrack || !portfolioSlider) {
+        return { minTranslate: 0, maxTranslate: 0 };
+    }
+    
+    const trackWidth = portfolioTrack.scrollWidth;
+    const viewportWidth = portfolioSlider.offsetWidth;
+    const margin = 20;
+    const maxTranslateLeft = -((trackWidth - viewportWidth) / 2 + margin);
+    const maxTranslateRight = (trackWidth - viewportWidth) / 2 + margin;
+    
+    return { 
+        minTranslate: maxTranslateLeft,
+        maxTranslate: maxTranslateRight
+    };
+}
+
 function onDOMContentLoaded() {
     const htmlElement = document.querySelector('html');
     const burger = document.querySelector(".header__burger");
@@ -22,6 +47,11 @@ function onDOMContentLoaded() {
     const modalBg = document.querySelector(".modal-bg");
     const pricingButtons = document.querySelectorAll(".pricing__button");
 
+    function handleModeChange() {
+        mode = isTouchDevice() ? 'touch' : 'mouse';
+        stopSliderAnimation();
+    }
+    mediaQueryList.addListener(handleModeChange);
     function closeModal() {
         modalBg.classList.remove("modal-bg--active");
         htmlElement.classList.remove("no-scroll");
@@ -52,16 +82,15 @@ function onDOMContentLoaded() {
         nav.classList.toggle("nav__small_screens_active");
         burger.classList.toggle('header__burger--active');
     }
-    function isTouchDevice() {
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    
+    if (!isSliderInitialized) {
+        mode = isTouchDevice() ? 'touch' : 'mouse';
+        initSlider();
+        setupSliderEventListeners();
+        isSliderInitialized = true;
     }
-
-    let mode = isTouchDevice() ? 'touch' : 'mouse';
-    let currentTranslateX = 0;
-    let sliderInterval = null;
     
     function initSlider() {
-
         const currentTransform = portfolioTrack.style.transform;
 
         let savedTranslateX = 0;
@@ -73,6 +102,7 @@ function onDOMContentLoaded() {
                 savedTranslateX = sign * value;
             }
         }
+        
         if (savedTranslateX !== 0) {
             currentTranslateX = savedTranslateX;
         }
@@ -82,18 +112,90 @@ function onDOMContentLoaded() {
         portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
     }
     
-    function getSliderBounds() {
-        const trackWidth = portfolioTrack.scrollWidth;
-        const viewportWidth = portfolioSlider.offsetWidth;
-        const margin = 20;
-        const maxTranslateLeft = -((trackWidth-viewportWidth) / 2  + margin);
-        const maxTranslateRight = (trackWidth-viewportWidth) / 2  + margin;
+    function setupSliderEventListeners() {
+        portfolioSlider.addEventListener('mousemove', function(event) {
+            if (mode === 'mouse') {
+                const rect = portfolioSlider.getBoundingClientRect();
+                const mouseX = event.clientX - rect.left;
+                const sliderWidth = rect.width;
+                const activeZone = sliderWidth * 0.3;
+                
+                if (mouseX < activeZone) {
+                    portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
+                    startSliderAnimation(1);
+                }
+                else if (mouseX > sliderWidth - activeZone) {
+                    portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
+                    startSliderAnimation(-1);
+                } else {
+                    portfolioSlider.style.cursor = 'auto';
+                    stopSliderAnimation();
+                }
+            }
+        });
+
+        portfolioSlider.addEventListener('mouseleave', function() {
+            stopSliderAnimation();
+        });
+
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        let startTranslateX = 0;
+        let swipeDirection = null;
         
-        return { 
-            minTranslate: maxTranslateLeft,
-            maxTranslate: maxTranslateRight
-        };
+        portfolioSlider.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+            startTranslateX = currentTranslateX;
+            isDragging = true;
+            swipeDirection = null;
+            portfolioTrack.style.transition = 'none';
+        }, { passive: false });
+            
+        portfolioSlider.addEventListener('touchmove', function(event) {
+            if (mode === 'touch') {
+                if (!isDragging) return;
+            
+                const currentX = event.touches[0].clientX;
+                const currentY = event.touches[0].clientY;
+                const offsetX = currentX - startX;
+                const offsetY = currentY - startY;
+                
+                if (swipeDirection === null) {
+                    if (Math.abs(offsetX) > 10 || Math.abs(offsetY) > 10) {
+                        swipeDirection = Math.abs(offsetX) > Math.abs(offsetY) ? 'horizontal' : 'vertical';
+                    }
+                }
+                
+                if (swipeDirection === 'horizontal') {
+                    if (event.cancelable) {
+                        event.preventDefault();
+                    }
+                    
+                    const bounds = getSliderBounds();
+                    let newTranslateX = startTranslateX + offsetX;
+                    
+                    if (newTranslateX < bounds.minTranslate) {
+                        newTranslateX = bounds.minTranslate;
+                    }
+                    if (newTranslateX > bounds.maxTranslate) {
+                        newTranslateX = bounds.maxTranslate;
+                    }
+                    
+                    currentTranslateX = newTranslateX;
+                    portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
+                }
+            }
+        }, { passive: false });
+            
+        portfolioSlider.addEventListener('touchend', function() {
+            isDragging = false;
+            swipeDirection = null;
+            portfolioTrack.style.transition = 'transform 0.3s ease';
+        });
     }
+    
     
     function startSliderAnimation(direction) {
         if (sliderInterval) {
@@ -123,7 +225,7 @@ function onDOMContentLoaded() {
             
             portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
             
-        }, 16);
+        }, 30);
     }
     
     function stopSliderAnimation() {
@@ -134,94 +236,6 @@ function onDOMContentLoaded() {
         }
     }
     
-    portfolioSlider.addEventListener('mousemove', function(event) {
-        if (mode === 'mouse') {
-            const rect = portfolioSlider.getBoundingClientRect();
-            const mouseX = event.clientX - rect.left;
-            const sliderWidth = rect.width;
-            const activeZone = sliderWidth * 0.3;
-            
-            if (mouseX < activeZone) {
-                portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
-                startSliderAnimation(1);
-            }
-            else if (mouseX > sliderWidth - activeZone) {
-                portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
-                startSliderAnimation(-1);
-            } else {
-                portfolioSlider.style.cursor = 'auto';
-                stopSliderAnimation();
-            }
-        }
-    });
-
-    portfolioSlider.addEventListener('mouseleave', function() {
-        stopSliderAnimation();
-    });
-
-
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-    let startTranslateX = 0;
-    let swipeDirection = null;
-    
-    portfolioSlider.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-        startTranslateX = currentTranslateX;
-        isDragging = true;
-        swipeDirection = null;
-        portfolioTrack.style.transition = 'none';
-    }, { passive: false });
-        
-    portfolioSlider.addEventListener('touchmove', function(event) {
-        if (mode === 'touch') {
-            if (!isDragging) return;
-        
-            const currentX = event.touches[0].clientX;
-            const currentY = event.touches[0].clientY;
-            const offsetX = currentX - startX;
-            const offsetY = currentY - startY;
-            
-            if (swipeDirection === null) {
-                if (Math.abs(offsetX) > 10 || Math.abs(offsetY) > 10) {
-                    swipeDirection = Math.abs(offsetX) > Math.abs(offsetY) ? 'horizontal' : 'vertical';
-                }
-            }
-            
-            if (swipeDirection === 'horizontal') {
-                if (event.cancelable) {
-                    event.preventDefault();
-                }
-                
-                const bounds = getSliderBounds();
-                let newTranslateX = startTranslateX + offsetX;
-                
-                if (newTranslateX < bounds.minTranslate) {
-                    newTranslateX = bounds.minTranslate;
-                }
-                if (newTranslateX > bounds.maxTranslate) {
-                    newTranslateX = bounds.maxTranslate;
-                }
-                
-                currentTranslateX = newTranslateX;
-                portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
-            }
-        }
-    }, { passive: false });
-        
-    portfolioSlider.addEventListener('touchend', function() {
-        isDragging = false;
-        swipeDirection = null;
-        portfolioTrack.style.transition = 'transform 0.3s ease';
-    });
-    
-    if (portfolioTrack && portfolioSlider) {
-        initSlider();
-    } else {
-        setTimeout(initSlider, 100);
-    }
     
     if (burger) {
         burger.addEventListener("click", openCloseMenu);
