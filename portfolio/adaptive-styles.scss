@@ -82,11 +82,12 @@
     }
     .header__burger {
         display: block;
-        position: relative;
         width: 2rem;
         height: 1.5rem;
+        position: relative;
         cursor: pointer;
-        margin: 1.16rem;
+        transition: all 0.3s ease;
+        margin-right: 1.2rem;
     }
     .header__burger::before,
     .header__burger::after {
@@ -104,6 +105,17 @@
     .header__burger::after {
         top: 0.75rem;
         width: 1.4rem;
+    }
+    .header__burger--active::before {
+        transform: rotate(45deg) translate(0.3125rem, 0.3125rem);
+        width: 70%;
+        top: 0.1rem;
+    }
+    
+    .header__burger--active::after {
+        transform: rotate(-45deg) translate(0.3125rem, -0.3125rem);
+        top: 1rem;
+        width: 70%;
     }
     .hero__vertical {
         justify-content: left;
@@ -169,7 +181,7 @@
     }
     
     .portfolio__track{
-        left: 47.5%;
+        left: 50%;
     }
     .faq {
         padding: 3.75rem 0 3.5rem;
@@ -192,4 +204,18 @@
     .footer__title {
         padding: 0.25rem 0 1.25rem 0;
     }
+    .nav__small_screens_link{
+        display: block;
+        padding: 1.125rem 1.25rem;
+        font-family: Oswald;
+        font-weight: 400;
+        font-style: Regular;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: uppercase;
+
+    }
+    
 }
