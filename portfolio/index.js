@@ -46,7 +46,8 @@ function onDOMContentLoaded() {
     faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
     
 
-    function openCloseMenu(){
+    function openCloseMenu(e){
+        e.stopImmediatePropagation();
         htmlElement.classList.toggle("no-scroll");
         nav.classList.toggle("nav__small_screens_active");
         burger.classList.toggle('header__burger--active');
@@ -85,8 +86,8 @@ function onDOMContentLoaded() {
         const trackWidth = portfolioTrack.scrollWidth;
         const viewportWidth = portfolioSlider.offsetWidth;
         const margin = 20;
-        const maxTranslateLeft = -((trackWidth-viewportWidth)/2  + margin*2);
-        const maxTranslateRight = (trackWidth-viewportWidth)/2;
+        const maxTranslateLeft = -((trackWidth-viewportWidth)/2  + margin);
+        const maxTranslateRight = (trackWidth-viewportWidth)/2  + margin;
         
         return { 
             minTranslate: maxTranslateLeft,
@@ -140,17 +141,16 @@ function onDOMContentLoaded() {
                 const sliderWidth = rect.width;
                 const activeZone = sliderWidth * 0.3;
                 
-                if(mouseX > activeZone && mouseX < sliderWidth - activeZone){
-                    portfolioSlider.style.cursor = 'auto';
-                    stopSliderAnimation();
-                }
-                else if (mouseX < activeZone) {
+                if (mouseX < activeZone) {
                     portfolioSlider.style.cursor = 'url("./images/arrow-left.png") 16 16, auto';
                     startSliderAnimation(1);
                 }
                 else if (mouseX > sliderWidth - activeZone) {
                     portfolioSlider.style.cursor = 'url("./images/arrow-right.png") 16 16, auto';
                     startSliderAnimation(-1);
+                } else {
+                    portfolioSlider.style.cursor = 'auto';
+                    stopSliderAnimation();
                 }
             }
         });
@@ -173,7 +173,7 @@ function onDOMContentLoaded() {
             isDragging = true;
             swipeDirection = null;
             portfolioTrack.style.transition = 'none';
-        });
+        }, { passive: false });
         
         portfolioSlider.addEventListener('touchmove', function(event) {
             if (mode === 'touch') {
@@ -209,7 +209,7 @@ function onDOMContentLoaded() {
                     portfolioTrack.style.transform = `translateX(calc(-50% + ${currentTranslateX}px))`;
                 }
             }
-        });
+        }, { passive: false });
         
         portfolioSlider.addEventListener('touchend', function() {
             isDragging = false;

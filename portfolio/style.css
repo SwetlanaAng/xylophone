@@ -74,6 +74,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 15;
 }
 
 .nav__list {
@@ -94,6 +96,7 @@ a {
 .nav__small_screens {
   height: 100vh;
   position: fixed;
+  top: 30px;
   right: 0;
   background-color: #222222;
   display: flex;
@@ -299,20 +302,20 @@ a {
     color: #FF3C3C;
     transition: color 0.5s ease;
   }
-  .footer__button {
+  .footer__button, .modal__button {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  .footer__button:hover {
+  .footer__button:hover, .modal__button:hover {
     background-color: #FF3C3C;
     color: #222222;
   }
-  .footer__input {
+  .footer__input, .modal__input {
     transition: border-color 0.3s ease;
   }
-  .footer__input:hover {
+  .footer__input:hover, .modal__input:hover {
     border-color: #FF3C3C;
   }
-  .footer__input:focus {
+  .footer__input:focus, .modal__input:focus {
     border-color: #FF3C3C;
     outline: none;
   }
@@ -485,7 +488,6 @@ a {
   top: 0;
   transform: translateX(-50%);
   gap: 1.25rem;
-  margin: 0 1.25rem 0;
   transition: transform 0.3s ease;
   will-change: transform;
 }
@@ -1173,7 +1175,7 @@ a {
     height: 45.5rem;
   }
   .portfolio__track {
-    left: 47.5%;
+    left: 50%;
   }
   .faq {
     padding: 3.75rem 0 3.5rem;
@@ -1329,7 +1331,7 @@ a {
     width: auto;
   }
   .portfolio__track {
-    left: 44.5%;
+    left: 50%;
   }
   .pricing__aside {
     padding-left: 0.625rem;
