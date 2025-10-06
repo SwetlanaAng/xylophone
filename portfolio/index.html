@@ -9,6 +9,17 @@
 </head>
 <body>
     <h1>photographer with 5 years of experience</h1>
+    <div class="modal-bg">
+        <div class="modal__content">
+            <div class="modal__cross"></div>
+            <h3 class="modal__title">Like my portfolio? Sign up for a shoot!</h3>
+                <form class="modal__form">
+                    <input type="text" class="modal__input" placeholder="Your Name" required>
+                    <input type="tel" class="modal__input" placeholder="+1" required>
+                    <button type="submit" class="modal__button">book now</button>
+                </form>
+        </div>
+    </div>
     <header class="header">
         <div class="container header__container">
             <a class="header__logo" href="#">
@@ -26,7 +37,16 @@
             </nav>
         </div>
     </header>
-    <main>
+    <main class="main">
+        <nav class="nav__small_screens">
+            <ul class="nav__small_screens_list">
+                <li class="nav__small_screens_item"><a class="nav__small_screens_link" href="#about">About me</a></li>
+                <li class="nav__small_screens_item"><a class="nav__small_screens_link" href="#portfolio">Portfolio</a></li>
+                <li class="nav__small_screens_item"><a class="nav__small_screens_link" href="#pricing">Price</a></li>
+                <li class="nav__small_screens_item"><a class="nav__small_screens_link" href="#faq">FAQ</a></li>
+                <li class="nav__small_screens_item"><a class="nav__small_screens_link" href="#contacts">Contacts</a></li>
+            </ul>
+        </nav>
         <section id="hero" class="hero">
             <div class="container hero__container">
                 <div class="hero__vertical">
@@ -55,7 +75,7 @@
                         </div>
                         <h2 class="hero__stats-title">Professional photographer</h2>
                         <h6 class="hero__stats-subtitle">Capture the Moment. Tell Your Story.</h6>
-                        <a class="hero__stats-scroll" href="#contacts">Scroll down <img class="hero__stats-scroll-arrow hero__stats-scroll-arrow--white" src="images/arrow-down.svg" alt="arrow down"><img class="hero__stats-scroll-arrow hero__stats-scroll-arrow--red" src="images/arrow-down-red.svg" alt="arrow down"></a>
+                        <button class="hero__stats-scroll">Scroll down <img class="hero__stats-scroll-arrow hero__stats-scroll-arrow--white" src="images/arrow-down.svg" alt="arrow down"><img class="hero__stats-scroll-arrow hero__stats-scroll-arrow--red" src="images/arrow-down-red.svg" alt="arrow down"></a></button>
                     </section>
                     <div class="hero__photo"><img class="hero__photo-image" src="images/png/img-10.png" alt="A girl dancing in the mountains"></div>
                     <div class="hero__intro">
@@ -207,18 +227,20 @@
                     <p class="faq__desc">Everything You Wanted to Ask (and a Bit More)</p>
                 </div>
                 <div class="faq__accordion">
-                    <div class="faq__item faq__item--active">
-                        <div class="faq__header">
+                    <div class="faq__item">
+                        <div class="faq__header" id="faq-1">
                             <h4 class="faq__question">How do I book a shoot?</h4>
                             <span class="faq__icon faq__icon--minus">−</span>
+                            <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
                             <p class="faq__answer">Super simple – just message me through any convenient platform (Instagram, Telegram, WhatsApp, or the contact form on this site). We’ll discuss your preferred date, city, and session type. Once confirmed, I’ll reserve the date for you and send over preparation tips.</p>
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-2">
                             <h4 class="faq__question">Can I choose the location myself?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -226,8 +248,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-3">
                             <h4 class="faq__question">How long does the shoot take?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -235,8 +258,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-4">
                             <h4 class="faq__question">When will I receive the photos?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -244,8 +268,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-5">
                             <h4 class="faq__question">Will you help me pose?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -253,8 +278,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-6">
                             <h4 class="faq__question">What should I wear?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -262,8 +288,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-7">
                             <h4 class="faq__question">Do you retouch the photos?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -271,8 +298,9 @@
                         </div>
                     </div>
                     <div class="faq__item">
-                        <div class="faq__header">
+                        <div class="faq__header" id="faq-8">
                             <h4 class="faq__question">Can I get the raw files?</h4>
+                            <span class="faq__icon faq__icon--minus">−</span>
                             <span class="faq__icon faq__icon--plus">+</span>
                         </div>
                         <div class="faq__content">
@@ -312,5 +340,6 @@
             </div>
         </div>
     </footer>
+    <script src="index.js" defer></script>
 </body>
 </html>

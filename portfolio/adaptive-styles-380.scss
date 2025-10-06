@@ -53,6 +53,11 @@
     .pricing__cards{
         padding: 0 0.625rem;
     }
+    .modal__content {
+        width: 340px;
+        height: 383px;
+        padding: 60px 20px;
+    }
 }
 @media (max-width: 500px){
     .footer__form {
@@ -78,6 +83,7 @@
         margin-bottom: 0.25rem;
         font-size: 1rem;
     }
+    
 }
 @media (max-width: 380px) {
     .hero__container {
@@ -126,7 +132,7 @@
         width: auto;
     }
     .portfolio__track{
-        left: 44.5%;
+        left: 50%;
     }
 
     .pricing__aside {
