@@ -271,14 +271,17 @@ function onDOMContentLoaded() {
         sessionStorage.setItem("faq-id", question.id);
         const answer = question.nextElementSibling;
         const parent = question.parentElement;
+        const isOpen = parent.classList.contains("faq__item--active");
 
         const otherItems = parent.parentElement.querySelectorAll(".faq__item");
         otherItems.forEach(item => {
             item.classList.remove("faq__item--active");
             item.querySelector(".faq__content").classList.remove("faq__content--active");
         });
-        parent.classList.add("faq__item--active");
-        answer.classList.add("faq__content--active");
+        if(!isOpen) {
+            parent.classList.toggle("faq__item--active");
+            answer.classList.toggle("faq__content--active");
+        }
     }
     if (faqHeaders) {
         faqHeaders.forEach(header => {
