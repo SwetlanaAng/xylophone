@@ -71,9 +71,10 @@ function onDOMContentLoaded() {
             closeModal();
         }
     });
-            
-    faqDefailtItem.parentElement.classList.add("faq__item--active");
-    faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
+    if(!sessionStorage.getItem("allClosed")) {
+        faqDefailtItem.parentElement.classList.add("faq__item--active");
+        faqDefailtItem.nextElementSibling.classList.add("faq__content--active");
+    }
     
 
     function openCloseMenu(e){
@@ -281,6 +282,10 @@ function onDOMContentLoaded() {
         if(!isOpen) {
             parent.classList.toggle("faq__item--active");
             answer.classList.toggle("faq__content--active");
+            sessionStorage.removeItem("allClosed");
+        } else {
+            sessionStorage.removeItem("faq-id");
+            sessionStorage.setItem("allClosed", "1");
         }
     }
     if (faqHeaders) {
