@@ -12,8 +12,8 @@ export default class AudioEngine {
 
   // Сыграть одиночный звук немедленно (обрывая текущий)
   play(url) {
-    this.queue = [];
-    this.isPlaying = false;
+    /* this.queue = [];
+    this.isPlaying = false; */
     this.start(url);
   }
 
