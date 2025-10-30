@@ -6,7 +6,10 @@ export default class XylophoneModel {
       this.notesById = new Map(notes.map(n => [n.id, n])); // [{id,freq,...}] */
   }
   playNoteById(noteId) {
-    this.audio.play(noteId); // тут надо в массиве найти адрем ноты по id
+    const note = this.notes.find((note) => {
+      return note.id === noteId;
+    });
+    this.audio.play(note.sampleUrl); 
   }
   playByKey(key) {}
   getNotes() {

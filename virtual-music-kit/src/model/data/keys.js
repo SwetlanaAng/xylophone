@@ -5,7 +5,7 @@ export const NOTES = [
     keyLabel: "q",
     freq: 261.63,
     color: "#f86d6b",
-    sampleUrl: "/assets/samples/C4.mp3",
+    sampleUrl: "/assets/notes/C4.wav",
   },
   {
     id: "D4",
@@ -13,7 +13,7 @@ export const NOTES = [
     keyLabel: "w",
     freq: 293.66,
     color: "#f6b558",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/D4.wav",
   },
   {
     id: "E4",
@@ -21,7 +21,7 @@ export const NOTES = [
     keyLabel: "e",
     freq: 293.66,
     color: "#f8d35a",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/E4.wav",
   },
   {
     id: "F4",
@@ -29,7 +29,7 @@ export const NOTES = [
     keyLabel: "r",
     freq: 293.66,
     color: "#7ac661",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/F4.wav",
   },
   {
     id: "G4",
@@ -37,7 +37,7 @@ export const NOTES = [
     keyLabel: "t",
     freq: 293.66,
     color: "#4fa98f",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/G4.wav",
   },
   {
     id: "A4",
@@ -45,7 +45,7 @@ export const NOTES = [
     keyLabel: "y",
     freq: 293.66,
     color: "#58acce",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/A4.wav",
   },
   {
     id: "H4",
@@ -53,6 +53,6 @@ export const NOTES = [
     keyLabel: "u",
     freq: 293.66,
     color: "#7168ca",
-    sampleUrl: "/assets/samples/D4.mp3",
+    sampleUrl: "/assets/notes/H4.wav",
   },
 ];
