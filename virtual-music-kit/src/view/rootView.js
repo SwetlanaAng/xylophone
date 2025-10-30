@@ -7,11 +7,15 @@ export default class RootView extends ElementCreator {
       tag: "div",
       classNames: ["root-view"],
     });
+    this.xylophoneView = new XylophoneView();
+  }
+  getXylophoneView() {
+    return this.xylophoneView;
   }
   createView() {
     const main = this.getElement();
     document.body.append(main);
-    const xylophoneView = new XylophoneView();
+    const xylophoneView = this.xylophoneView;
     const headerView = new HeaderView();
     main.append(headerView.createView());
     main.append(xylophoneView.createView());
