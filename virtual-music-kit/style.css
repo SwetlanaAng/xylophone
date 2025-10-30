@@ -1,0 +1,120 @@
+@font-face {
+    font-family: "Oswald";
+    src: url("fonts/Oswald-Regular.woff2");
+    font-weight: 400;
+    font-style: normal;
+  }
+body {
+ background-color: #f3ded4;
+ font-family: "Oswald";
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.form {
+    display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+}
+.input {
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    line-height: 1.5rem;
+    letter-spacing: 0.00625rem;
+    cursor: pointer;
+   
+}
+.button {
+    background-color: #222222;
+    border-radius: 5px;
+    color: #ffffff;
+    border: none;
+    padding: 5px;
+    font-family: "Oswald";
+    font-weight: 400;
+    line-height: 1.5rem;
+    letter-spacing: 0.00625rem;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+}
+.xylophone {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    height: 80vh;
+    width: 100%;
+    align-items: center;
+}
+.key {
+    width: 100%;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: large;
+}
+.key-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.edit-key-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.key-label-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+.edit-img{
+    width: 15px;
+}
+.C4 {
+    background-color: #f86d6b;
+    height: 100%;
+    width: 100%
+}
+.D4 {
+    background-color: #f6b558;
+    height: 90%;
+    width: 100%
+
+}
+.E4 {
+    background-color: #f8d35a;
+    height: 80%;
+    width: 100%
+}
+.F4 {
+    background-color: #7ac661;
+    height: 70%;
+    width: 100%
+}
+.G4 {
+    background-color: #4fa98f;
+    height: 60%;
+    width: 100%
+}
+.A4 {
+    background-color: #58acce;
+    height: 50%;
+    width: 100%
+}
+.H4 {
+    background-color: #7168ca;
+    height: 40%;
+    width: 100%
+}
