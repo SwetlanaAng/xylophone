@@ -22,12 +22,16 @@ export default class FormView extends ElementCreator {
         ["type", "text"],
         ["placeholder", "Your notes"],
       ],
+      callback: (e) =>{
+        
+      }
+      eventName: "input"
     });
     const button = new ElementCreator({
       tag: "button",
       classNames: ["button"],
       attributesNames: [["type", "button"]],
-      textContent: "Enter",
+      textContent: "Play",
     });
     form.append(label.getElement());
     form.append(input.getElement());

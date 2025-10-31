@@ -5,3 +5,10 @@ export function clearBody() {
     }
   }
 }
+export function clearElement(el) {
+  if (el.childNodes.length > 0) {
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+  }
+}

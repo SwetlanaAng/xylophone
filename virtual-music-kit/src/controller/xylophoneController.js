@@ -9,6 +9,14 @@ export default class XylophoneController {
     this.xylophoneView.onKeyClick((noteId) => {
       this.model.playNoteById(noteId);
     });
-    window.addEventListener("keydown", (e) => this.model.playByKey(e.key));
+    this.xylophoneView.onEditKeyLabelClick((noteId) => {
+      this.model.editKeyLabel(noteId);
+    });
+    window.addEventListener("keydown", (e) => {
+      if (this.xylophoneView.isEditMode()) {
+        return;
+      }
+      this.model.playByKey(e.key);
+    });
   }
 }

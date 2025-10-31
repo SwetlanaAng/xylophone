@@ -20,6 +20,7 @@ export default class XylophoneModel {
     if (!this.keyMap[normalizedKey]) return;
     this.playNoteById(this.keyMap[normalizedKey]);
   }
+  editKeyLabel(noteId) {}
   getNotes() {
     return this.notes;
   }

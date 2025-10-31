@@ -26,6 +26,12 @@ body {
   letter-spacing: 0.00625rem;
   cursor: pointer;
 }
+.input-edit {
+  width: 28%;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 3px;
+}
 .button {
   background-color: #222222;
   border-radius: 5px;
