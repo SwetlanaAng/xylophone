@@ -26,6 +26,11 @@ body {
   letter-spacing: 0.00625rem;
   cursor: pointer;
 }
+
+.input:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
 .input-edit {
   width: 28%;
   margin-top: 10px;
@@ -46,6 +51,21 @@ body {
   width: 100%;
   text-transform: uppercase;
 }
+
+.button:disabled {
+  background-color: #6b6b6b;
+  cursor: not-allowed;
+}
+
+.form.disabled {
+  cursor: not-allowed;
+}
+
+.form.disabled .input,
+.form.disabled .button {
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .xylophone {
   display: flex;
   justify-content: center;
@@ -53,6 +73,18 @@ body {
   height: 80vh;
   width: 100%;
   align-items: center;
+}
+
+.xylophone.disabled {
+  cursor: not-allowed;
+}
+
+.xylophone.disabled .key,
+.xylophone.disabled .edit-key-label,
+.xylophone.disabled .key-label-box {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 1;
 }
 .key {
   width: 100%;
@@ -63,6 +95,20 @@ body {
   justify-content: center;
   color: aliceblue;
   font-size: large;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.key.active {
+  transform: scale(1.005);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.key.disabled {
+  cursor: not-allowed;
+  opacity: 1;
 }
 .key-box {
   width: 100%;
@@ -76,6 +122,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.edit-key-label.disabled {
+  cursor: not-allowed;
+  opacity: 1;
 }
 .key-label-box {
   display: flex;

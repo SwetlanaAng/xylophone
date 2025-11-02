@@ -15,19 +15,24 @@ export default class XylophoneView extends ElementCreator {
     this.notes = NOTES;
     this.keyMap = KEY_MAP;
     this.editMode = false;
+    this.currentHighlightedKey = null;
+    this.onEditConfirmHandler = null;
+    this.onEditCancelHandler = null;
+    this.isDisabled = false;
   }
 
-  replaceKeyLabel(noteId, newLabel, currentKeyLabel) {
-    if (newLabel && !this.keyMap[newLabel]) {
-      this.notes.find((note) => note.id === noteId).keyLabel = newLabel;
-      delete this.keyMap[currentKeyLabel];
-      this.keyMap[newLabel] = noteId;
-      return true;
-    }
-    return false;
+  onEditConfirm(handler) {
+    this.onEditConfirmHandler = handler;
   }
-
+  onEditCansel(handler) {
+    this.onEditCanselHandler = handler;
+  }
   enterEditMode(noteId, currentChar) {
+    // Проверяем, не заблокирован ли интерфейс (во время воспроизведения последовательности)
+    if (this.isDisabled) {
+      return;
+    }
+
     this.editMode = true;
     this.editingNoteId = noteId;
     const currentKeyLabel = Object.keys(this.keyMap).find(
@@ -58,7 +63,7 @@ export default class XylophoneView extends ElementCreator {
     inp.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         clearElement(keyLabelBox);
-        this.replaceKeyLabel(noteId, e.target.value, currentKeyLabel);
+        this.onEditConfirmHandler?.(noteId, e.target.value, currentKeyLabel);
         const { keyLabel, editKeyLabel } =
           this.createKeyLabelBoxContent(noteId);
         keyLabelBox.append(keyLabel.getElement());
@@ -72,6 +77,7 @@ export default class XylophoneView extends ElementCreator {
         keyLabelBox.append(keyLabel.getElement());
         keyLabelBox.append(editKeyLabel.getElement());
         this.editMode = false;
+        this.onEditCanselHandler?.();
       }
     });
     inp.addEventListener("input", (e) => {
@@ -98,6 +104,90 @@ export default class XylophoneView extends ElementCreator {
 
   isEditMode() {
     return this.editMode;
+  }
+
+  setDisabled(isDisabled) {
+    this.isDisabled = isDisabled;
+    const xylophone = this.getElement();
+    const keys = xylophone.querySelectorAll(".key");
+    const editLabels = xylophone.querySelectorAll(".edit-key-label");
+    const keyLabelBoxes = xylophone.querySelectorAll(".key-label-box");
+
+    // Блокируем клавиши (только добавляем класс, цвет не меняем)
+    keys.forEach((key) => {
+      if (isDisabled) {
+        key.classList.add("disabled");
+      } else {
+        key.classList.remove("disabled");
+      }
+    });
+
+    editLabels.forEach((editLabel) => {
+      if (isDisabled) {
+        editLabel.classList.add("disabled");
+      } else {
+        editLabel.classList.remove("disabled");
+      }
+    });
+
+    keyLabelBoxes.forEach((box) => {
+      if (isDisabled) {
+        box.classList.add("disabled");
+      } else {
+        box.classList.remove("disabled");
+      }
+    });
+
+    // Добавляем класс к самому контейнеру для курсора
+    if (isDisabled) {
+      xylophone.classList.add("disabled");
+    } else {
+      xylophone.classList.remove("disabled");
+    }
+
+    if (isDisabled && this.editMode) {
+      const keyLabelBox = xylophone.querySelector(
+        `.${this.editingNoteId}-key-label-box`,
+      );
+      if (keyLabelBox) {
+        clearElement(keyLabelBox);
+        const { keyLabel, editKeyLabel } = this.createKeyLabelBoxContent(
+          this.editingNoteId,
+        );
+        keyLabelBox.append(keyLabel.getElement());
+        keyLabelBox.append(editKeyLabel.getElement());
+      }
+      this.editMode = false;
+      this.editingNoteId = null;
+    }
+  }
+
+  highlightKey(noteId, isOn) {
+    if (
+      isOn &&
+      this.currentHighlightedKey &&
+      this.currentHighlightedKey !== noteId
+    ) {
+      const oldKeyElement = this.getElement().querySelector(
+        `.${this.currentHighlightedKey}`,
+      );
+      if (oldKeyElement) {
+        oldKeyElement.classList.remove("active");
+      }
+    }
+
+    const keyElement = this.getElement().querySelector(`.${noteId}`);
+    if (keyElement) {
+      if (isOn) {
+        keyElement.classList.add("active");
+        this.currentHighlightedKey = noteId;
+      } else {
+        keyElement.classList.remove("active");
+        if (this.currentHighlightedKey === noteId) {
+          this.currentHighlightedKey = null;
+        }
+      }
+    }
   }
 
   createKeyLabelBoxContent(noteId) {

@@ -1,6 +1,7 @@
 import ElementCreator from "../../utils/element-creator.js";
 import XylophoneView from "./XylophoneView.js";
 import HeaderView from "./headerView.js";
+import FormView from "./formView.js";
 export default class RootView extends ElementCreator {
   constructor() {
     super({
@@ -8,16 +9,22 @@ export default class RootView extends ElementCreator {
       classNames: ["root-view"],
     });
     this.xylophoneView = new XylophoneView();
+    this.formView = new FormView();
+    this.header = new HeaderView();
   }
   getXylophoneView() {
     return this.xylophoneView;
   }
+  getFormView() {
+    return this.formView;
+  }
   createView() {
     const main = this.getElement();
     document.body.append(main);
-    const xylophoneView = this.xylophoneView;
-    const headerView = new HeaderView();
-    main.append(headerView.createView());
-    main.append(xylophoneView.createView());
+    const headerView = this.header.createView();
+    headerView.append(this.formView.createView());
+    main.append(headerView);
+    //main.append(this.formView.createView());
+    main.append(this.xylophoneView.createView());
   }
 }

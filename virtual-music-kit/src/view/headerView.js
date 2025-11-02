@@ -1,5 +1,4 @@
 import ElementCreator from "../../utils/element-creator.js";
-import FormView from "./formView.js";
 export default class HeaderView extends ElementCreator {
   constructor() {
     super({
@@ -23,12 +22,10 @@ export default class HeaderView extends ElementCreator {
       classNames: ["h3"],
       textContent: "Xylophone",
     });
-    const form = new FormView();
     headingBox.addInnerElement(heading);
     headingBox.addInnerElement(instrument);
 
     header.append(headingBox.getElement());
-    header.append(form.createView());
     return header;
   }
 }
