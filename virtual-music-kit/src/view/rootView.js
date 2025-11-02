@@ -1,5 +1,5 @@
 import ElementCreator from "../../utils/element-creator.js";
-import XylophoneView from "./XylophoneView.js";
+import XylophoneView from "./xylophoneView.js";
 import HeaderView from "./headerView.js";
 import FormView from "./formView.js";
 export default class RootView extends ElementCreator {
@@ -24,7 +24,6 @@ export default class RootView extends ElementCreator {
     const headerView = this.header.createView();
     headerView.append(this.formView.createView());
     main.append(headerView);
-    //main.append(this.formView.createView());
     main.append(this.xylophoneView.createView());
   }
 }
