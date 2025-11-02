@@ -37,6 +37,11 @@ export default class XylophoneModel {
     if (!this.keyMap[normalizedKey]) return;
     this.playNoteById(this.keyMap[normalizedKey]);
   }
+
+  getNoteIdByKey(key) {
+    const normalizedKey = this.normalizeToEn(key);
+    return this.keyMap[normalizedKey] || null;
+  }
   cancelEdit() {}
 
   replaceKeyLabel(noteId, newLabel, currentKeyLabel) {

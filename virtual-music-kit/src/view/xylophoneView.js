@@ -19,6 +19,8 @@ export default class XylophoneView extends ElementCreator {
     this.onEditConfirmHandler = null;
     this.onEditCancelHandler = null;
     this.isDisabled = false;
+    this.onKeyMouseDownHandler = null;
+    this.onKeyMouseUpHandler = null;
   }
 
   onEditConfirm(handler) {
@@ -28,7 +30,6 @@ export default class XylophoneView extends ElementCreator {
     this.onEditCanselHandler = handler;
   }
   exitEditMode() {
-    // Закрываем редактирование без сохранения изменений
     if (!this.editMode || !this.editingNoteId) {
       return;
     }
@@ -113,6 +114,14 @@ export default class XylophoneView extends ElementCreator {
 
   onKeyClick(handler) {
     this.onKeyClickHandler = handler;
+  }
+
+  onKeyMouseDown(handler) {
+    this.onKeyMouseDownHandler = handler;
+  }
+
+  onKeyMouseUp(handler) {
+    this.onKeyMouseUpHandler = handler;
   }
 
   onEditKeyLabelClick(handler) {
@@ -227,9 +236,29 @@ export default class XylophoneView extends ElementCreator {
         tag: "div",
         classNames: [`${note.id}`, "key"],
         textContent: `${note.label}`,
-        callback: () => {
-          this.onKeyClickHandler?.(`${note.id}`);
-        },
+      });
+
+      const keyElement = key.getElement();
+
+      let wasMouseDown = false;
+
+      keyElement.addEventListener("mousedown", () => {
+        wasMouseDown = true;
+        this.onKeyMouseDownHandler?.(note.id);
+      });
+
+      keyElement.addEventListener("mouseup", () => {
+        this.onKeyMouseUpHandler?.(note.id);
+      });
+
+      keyElement.addEventListener("click", (e) => {
+        if (wasMouseDown) {
+          wasMouseDown = false;
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        this.onKeyClickHandler?.(note.id);
       });
 
       const keyLabelBox = new ElementCreator({

@@ -9,12 +9,15 @@ export default class XylophoneController {
     this.view.createView();
 
     this.isPlayingSequence = false;
+    this.pressedNotes = new Set();
 
     this.model.onNoteStart = (noteId) => {
       this.xylophoneView.highlightKey(noteId, true);
     };
     this.model.onNoteEnd = (noteId) => {
-      this.xylophoneView.highlightKey(noteId, false);
+      if (!this.pressedNotes.has(noteId)) {
+        this.xylophoneView.highlightKey(noteId, false);
+      }
     };
 
     this.model.onSequenceStart = () => {
@@ -28,10 +31,31 @@ export default class XylophoneController {
       this.formView.setDisabled(false);
     };
 
+    this.xylophoneView.onKeyMouseDown((noteId) => {
+      if (this.isPlayingSequence) {
+        return;
+      }
+      if (!this.pressedNotes.has(noteId)) {
+        this.pressedNotes.add(noteId);
+        this.xylophoneView.highlightKey(noteId, true);
+        this.model.playNoteById(noteId);
+      }
+    });
+
+    this.xylophoneView.onKeyMouseUp((noteId) => {
+      this.pressedNotes.delete(noteId);
+      setTimeout(() => {
+        if (!this.pressedNotes.has(noteId)) {
+          this.xylophoneView.highlightKey(noteId, false);
+        }
+      }, 50);
+    });
+
     this.xylophoneView.onKeyClick((noteId) => {
       if (this.isPlayingSequence) {
         return;
       }
+
       this.model.playNoteById(noteId);
     });
 
@@ -72,7 +96,30 @@ export default class XylophoneController {
         return;
       }
 
-      this.model.playByKey(e.key);
+      const noteId = this.model.getNoteIdByKey(e.key);
+      if (noteId) {
+        if (!this.pressedNotes.has(noteId)) {
+          this.pressedNotes.add(noteId);
+          this.xylophoneView.highlightKey(noteId, true);
+          this.model.playByKey(e.key);
+        }
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (this.isPlayingSequence) {
+        return;
+      }
+
+      const noteId = this.model.getNoteIdByKey(e.key);
+      if (noteId && this.pressedNotes.has(noteId)) {
+        this.pressedNotes.delete(noteId);
+        setTimeout(() => {
+          if (!this.pressedNotes.has(noteId)) {
+            this.xylophoneView.highlightKey(noteId, false);
+          }
+        }, 50);
+      }
     });
   }
 }
