@@ -181,3 +181,45 @@ body {
   height: 40%;
   width: 100%;
 }
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 1.5rem;
+  }
+  .h3 {
+    font-size: 1rem;
+  }
+  .label {
+    font-size: 0.8rem;
+  }
+  .edit-img {
+    width: 10px;
+  }
+  .input-edit {
+    width: 20%;
+  }
+  .button {
+    font-size: 0.8rem;
+  }
+  .xylophone {
+    gap: 8px;
+    height: 52vh;
+  }
+  .D4 {
+    height: 87%;
+  }
+  .form {
+    width: 40%;
+  }
+  .input-edit {
+    width: 41%;
+  }
+  .key-label-box {
+    gap: 4px;
+  }
+}
+@media (max-width: 500px) {
+  .xylophone {
+    gap: 3px;
+    height: 45vh;
+  }
+}
