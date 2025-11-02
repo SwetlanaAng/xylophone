@@ -36,6 +36,11 @@ export default class FormView extends ElementCreator {
   }
   createView() {
     const form = this.getElement();
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
     const label = new ElementCreator({
       tag: "label",
       classNames: ["label"],
@@ -67,17 +72,26 @@ export default class FormView extends ElementCreator {
       },
       eventName: "input",
     });
+
+    const inputEl = input.getElement();
+
+    inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+      }
+    });
+
     const button = new ElementCreator({
       tag: "button",
       classNames: ["button"],
       attributesNames: [["type", "button"]],
       textContent: "Play",
       callback: () => {
-        this.onSubmitHandler?.(input.getElement().value);
+        this.onSubmitHandler?.(inputEl.value);
       },
     });
     form.append(label.getElement());
-    form.append(input.getElement());
+    form.append(inputEl);
     form.append(button.getElement());
     return form;
   }

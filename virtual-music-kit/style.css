@@ -97,11 +97,18 @@ body {
   font-size: large;
   transition:
     transform 0.1s ease,
-    box-shadow 0.1s ease;
+    box-shadow 0.1s ease,
+    filter 0.1s ease;
+  cursor: pointer;
+}
+
+.key:hover:not(.disabled):not(.active) {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .key.active {
-  transform: scale(1.005);
+  transform: scale(1.04);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }

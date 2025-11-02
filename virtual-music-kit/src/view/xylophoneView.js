@@ -27,10 +27,34 @@ export default class XylophoneView extends ElementCreator {
   onEditCansel(handler) {
     this.onEditCanselHandler = handler;
   }
+  exitEditMode() {
+    // Закрываем редактирование без сохранения изменений
+    if (!this.editMode || !this.editingNoteId) {
+      return;
+    }
+
+    const keyLabelBox = this.getElement().querySelector(
+      `.${this.editingNoteId}-key-label-box`,
+    );
+    if (keyLabelBox) {
+      clearElement(keyLabelBox);
+      const { keyLabel, editKeyLabel } = this.createKeyLabelBoxContent(
+        this.editingNoteId,
+      );
+      keyLabelBox.append(keyLabel.getElement());
+      keyLabelBox.append(editKeyLabel.getElement());
+    }
+    this.editMode = false;
+    this.editingNoteId = null;
+    this.onEditCanselHandler?.();
+  }
+
   enterEditMode(noteId, currentChar) {
-    // Проверяем, не заблокирован ли интерфейс (во время воспроизведения последовательности)
     if (this.isDisabled) {
       return;
+    }
+    if (this.editMode && this.editingNoteId && this.editingNoteId !== noteId) {
+      this.exitEditMode();
     }
 
     this.editMode = true;
@@ -43,8 +67,7 @@ export default class XylophoneView extends ElementCreator {
       `.${noteId}-key-label-box`,
     );
     const labelEl = this.getElement().querySelector(`.${noteId}-label`);
-    const editIcon = keyLabelBox.querySelector(`.${noteId}-edit-label`);
-    if (!labelEl) return;
+    if (!labelEl || !keyLabelBox) return;
     clearElement(keyLabelBox);
 
     const input = new ElementCreator({
@@ -71,13 +94,7 @@ export default class XylophoneView extends ElementCreator {
         this.editMode = false;
       }
       if (e.key === "Escape") {
-        clearElement(keyLabelBox);
-        const { keyLabel, editKeyLabel } =
-          this.createKeyLabelBoxContent(noteId);
-        keyLabelBox.append(keyLabel.getElement());
-        keyLabelBox.append(editKeyLabel.getElement());
-        this.editMode = false;
-        this.onEditCanselHandler?.();
+        this.exitEditMode();
       }
     });
     inp.addEventListener("input", (e) => {
@@ -113,7 +130,6 @@ export default class XylophoneView extends ElementCreator {
     const editLabels = xylophone.querySelectorAll(".edit-key-label");
     const keyLabelBoxes = xylophone.querySelectorAll(".key-label-box");
 
-    // Блокируем клавиши (только добавляем класс, цвет не меняем)
     keys.forEach((key) => {
       if (isDisabled) {
         key.classList.add("disabled");
@@ -138,7 +154,6 @@ export default class XylophoneView extends ElementCreator {
       }
     });
 
-    // Добавляем класс к самому контейнеру для курсора
     if (isDisabled) {
       xylophone.classList.add("disabled");
     } else {
@@ -146,19 +161,7 @@ export default class XylophoneView extends ElementCreator {
     }
 
     if (isDisabled && this.editMode) {
-      const keyLabelBox = xylophone.querySelector(
-        `.${this.editingNoteId}-key-label-box`,
-      );
-      if (keyLabelBox) {
-        clearElement(keyLabelBox);
-        const { keyLabel, editKeyLabel } = this.createKeyLabelBoxContent(
-          this.editingNoteId,
-        );
-        keyLabelBox.append(keyLabel.getElement());
-        keyLabelBox.append(editKeyLabel.getElement());
-      }
-      this.editMode = false;
-      this.editingNoteId = null;
+      this.exitEditMode();
     }
   }
 
