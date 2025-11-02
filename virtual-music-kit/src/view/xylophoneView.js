@@ -220,7 +220,7 @@ export default class XylophoneView extends ElementCreator {
     const editIcon = new ElementCreator({
       tag: "img",
       classNames: ["edit-img"],
-      attributesNames: [["src", "/assets/editIcon.png"]],
+      attributesNames: [["src", "assets/editIcon.png"]],
     });
 
     editKeyLabel.addInnerElement(editIcon);
